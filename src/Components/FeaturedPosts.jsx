@@ -1,10 +1,11 @@
 import React from 'react'
 
-const PostListPage = () => {
+const FeaturedPosts = () => {
   return (
     <div>
+      
     </div>
   )
 }
 
-export default PostListPage
+export default FeaturedPosts
