@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
+import Navbar from "./Components/Navbar";
 
-const App = ()=> {
+const App = () => {
   return (
     <div className="px-4 md:px-8 lg:px-16 lx:px-32 2xl:px-64">
-      Hello World
+      {/* NAVBAR */}
+      <Navbar />
+      {/* BREADCRUMB */}
+      {/* INTRODUCTION */}
+      {/* FEATURED POSTS */}
+      {/* POST LIST */}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
