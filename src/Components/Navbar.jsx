@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IKImage } from 'imagekitio-react';
+import Image from "./Image";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -8,7 +9,7 @@ const Navbar = () => {
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/* Logo */}
       <div className="flex items-center gap-4 text-2xl font-bold">
-        <IKImage urlEndpoint={import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT} path = "/logo.png" className="w-8 h-8" alt="" />
+        <Image src = "logo.png" classname = "w-10 h-10" w = {32} h = {32} alt = "logo" />
         <span>LamaLog</span>
       </div>
       {/* Mobile menu */}
