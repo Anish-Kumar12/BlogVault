@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "../Components/Image";
-import { Link, Links } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PostMenuActions from "../components/PostMenuActions";
 import Search from "../components/Search";
+import Comments from "../components/Comments";
 
 const SinglePostPage = () => {
   return (
-<div className="flex flex-col gap-8">
+<div className="flex flex-col gap-8 py-10">
       {/* detail */}
       <div className="flex gap-8">
         <div className="lg:w-3/5 flex flex-col gap-8">
@@ -164,6 +165,7 @@ const SinglePostPage = () => {
           <Search />
         </div>
       </div>
+      <Comments />
     </div>
   );
 };
