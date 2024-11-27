@@ -1,11 +1,10 @@
-import User from "../models/user.models.js";
+import User from "../models/user.model.js";
 import Post from "../models/post.model.js";
 import Comment from "../models/comment.model.js";
 import { Webhook } from "svix";
 
 export const clerkWebHook = async (req, res) => {
-  // res.send("Webhook received");
-  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRECT;
+  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
     throw new Error("Webhook secret needed!");
@@ -24,7 +23,7 @@ export const clerkWebHook = async (req, res) => {
     });
   }
 
-  console.log(evt.data);
+  // console.log(evt.data);
 
   if (evt.type === "user.created") {
     const newUser = new User({
@@ -45,18 +44,6 @@ export const clerkWebHook = async (req, res) => {
     await Post.deleteMany({user:deletedUser._id})
     await Comment.deleteMany({user:deletedUser._id})
   }
-
-    if (evt.type === "user.updated") {
-        const updatedUser = await User.findOneAndUpdate(
-            { clerkUserId: evt.data.id },
-            {
-                username: evt.data.username || evt.data.email_addresses[0].email_address,
-                email: evt.data.email_addresses[0].email_address,
-                img: evt.data.profile_img_url,
-            },
-            { new: true }
-        );
-    }
 
   return res.status(200).json({
     message: "Webhook received",
