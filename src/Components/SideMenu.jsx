@@ -2,11 +2,26 @@ import { Link, useSearchParams } from "react-router-dom";
 import Search from "./Search";
 
 const SideMenu = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const handleFilterChange = (e) => {
-  }
-const handleCategoryChange = (category) => {
-}
+    if (searchParams.get("sort") !== e.target.value) {
+      setSearchParams({
+        ...Object.fromEntries(searchParams.entries()),
+        sort: e.target.value,
+      });
+    }
+  };
+  const handleCategoryChange = (category) => {
+    if (searchParams.get("cat") !== category) {
+      setSearchParams({
+        ...Object.fromEntries(searchParams.entries()),
+        cat:category,
+      });
+    }
+  };
+
+
   return (
     <div className="px-4 h-max sticky top-8">
       <h1 className="mb-4 text-sm font-medium">Search</h1>
