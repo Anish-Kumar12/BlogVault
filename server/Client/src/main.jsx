@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./Routes/Homepage.jsx";
 import PostListPage from "./Routes/PostListPage.jsx";
 import Write from "./Routes/Write.jsx";
-import LoginPage from "./routes/LoginPage.jsx";
+import LoginPage from "./Routes/LoginPage.jsx";
 import RegisterPage from "./routes/RegisterPage.jsx";
 import SinglePostPage from "./Routes/SinglePostPage.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
