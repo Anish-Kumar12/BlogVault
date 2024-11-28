@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import Image from "../Components/Image";
-import PostMenuActions from "../components/PostMenuActions";
+import PostMenuActions from "../Components/PostMenuActions";
 import Search from "../Components/Search";
 import Comments from "../Components/Comments";
 import axios from "axios";
