@@ -33,7 +33,7 @@ const Write = () => {
     mutationFn: async (newPost) => {
       const token = await getToken();
       return axios.post(
-        `${import.meta.env.VITE_API_URL}/posts/create`,
+        `${import.meta.env.VITE_API_URL}/poste/create`,
         newPost,
         {
           headers: {

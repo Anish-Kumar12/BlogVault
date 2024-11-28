@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 
 // API Routes
 app.use("/users", userRouter);
-app.use("/posts", postRouter);
+app.use("/poste", postRouter);
 app.use("/comments", commentRouter);
 app.use("/webhooks", webhookRouter);
 
