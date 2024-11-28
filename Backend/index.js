@@ -1,5 +1,5 @@
 import express from "express";
-import connectDB from "./lib/connectDB.js";
+import connectDB from "./lib/connectDb.js";
 import userRouter from "./routes/user.route.js";
 import postRouter from "./routes/post.route.js";
 import commentRouter from "./routes/comment.route.js";

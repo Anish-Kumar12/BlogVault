@@ -1,10 +1,10 @@
-import User from "../models/user.model.js";
+import User from "../models/user.models.js";
 import Post from "../models/post.model.js";
 import Comment from "../models/comment.model.js";
 import { Webhook } from "svix";
 
 export const clerkWebHook = async (req, res) => {
-  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRECT;
 
   if (!WEBHOOK_SECRET) {
     throw new Error("Webhook secret needed!");

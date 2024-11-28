@@ -1,4 +1,3 @@
-
 import ImageKit from "imagekit";
 import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
@@ -84,10 +83,8 @@ export const getPost = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
+  console.log(req.body);
   const clerkUserId = req.auth.userId;
-
-  console.log(req.headers);
-
   if (!clerkUserId) {
     return res.status(401).json("Not authenticated!");
   }

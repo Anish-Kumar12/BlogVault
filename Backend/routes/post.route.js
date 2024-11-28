@@ -7,7 +7,7 @@ import {
   uploadAuth,
   featurePost,
 } from "../controllers/post.controller.js";
-import increaseVisit from "../middlewares/increaseVisit.js";
+import increaseVisit from "../middleware/increaseVisit.js";
 
 const router = express.Router();
 
