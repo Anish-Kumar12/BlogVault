@@ -1,4 +1,4 @@
-import User from "../models/user.models.js";
+import User from "../models/user.model.js";
 import Post from "../models/post.model.js";
 import Comment from "../models/comment.model.js";
 import { Webhook } from "svix";
@@ -7,7 +7,7 @@ export const clerkWebHook = async (req, res) => {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRECT;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error("Webhook secret needed!");
+    return res.status(500).json({ message: "Webhook secret needed!" });
   }
 
   const payload = req.body;
@@ -18,9 +18,8 @@ export const clerkWebHook = async (req, res) => {
   try {
     evt = wh.verify(payload, headers);
   } catch (err) {
-    res.status(400).json({
-      message: "Webhook verification failed!",
-    });
+    console.error("Webhook verification failed:", err);
+    return res.status(400).json({ message: "Webhook verification failed!" });
   }
 
   // console.log(evt.data);
@@ -33,7 +32,13 @@ export const clerkWebHook = async (req, res) => {
       img: evt.data.profile_img_url,
     });
 
-    await newUser.save();
+    try {
+      await newUser.save();
+      return res.status(200).json({ message: "User created successfully!" });
+    } catch (err) {
+      console.error("Error saving new user:", err);
+      return res.status(500).json({ message: "Error saving new user!" });
+    }
   }
 
   if (evt.type === "user.deleted") {
@@ -41,11 +46,14 @@ export const clerkWebHook = async (req, res) => {
       clerkUserId: evt.data.id,
     });
 
-    await Post.deleteMany({user:deletedUser._id})
-    await Comment.deleteMany({user:deletedUser._id})
+    if (deletedUser) {
+      await Post.deleteMany({ user: deletedUser._id });
+      await Comment.deleteMany({ user: deletedUser._id });
+      return res.status(200).json({ message: "User and related data deleted successfully!" });
+    } else {
+      return res.status(404).json({ message: "User not found!" });
+    }
   }
 
-  return res.status(200).json({
-    message: "Webhook received",
-  });
+  return res.status(400).json({ message: "Unhandled event type!" });
 };
