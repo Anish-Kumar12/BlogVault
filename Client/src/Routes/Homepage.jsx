@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import MainCategories from "../Components/MainCategories";
-import FeaturedPosts from "../Components/FeaturedPosts";
-import PostList from "../Components/PostList";
+import MainCategories from "../components/MainCategories";
+import FeaturedPosts from "../components/FeaturedPosts";
+import PostList from "../components/PostList";
+import { useAuth } from "@clerk/clerk-react";
 
 const Homepage = () => {
   return (
@@ -17,11 +18,10 @@ const Homepage = () => {
         {/* titles */}
         <div className="">
           <h1 className="text-gray-800 text-2xl md:text-5xl lg:text-6xl font-bold">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Unlock a World of Insights and Ideas
           </h1>
           <p className="mt-8 text-md md:text-xl">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi
-            rerum accusantium.
+          Dive into curated articles, tutorials, and thought leadership across web design, development, databases, and more. Your journey to mastering the digital world starts here
           </p>
         </div>
         {/* animated button */}
@@ -31,6 +31,7 @@ const Homepage = () => {
             width="200"
             height="200"
             className="text-lg tracking-widest animate-spin animatedButton"
+            // className="text-lg tracking-widest"
           >
             <path
               id="circlePath"
