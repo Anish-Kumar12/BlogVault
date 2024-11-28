@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import MainCategories from "../components/MainCategories";
-import FeaturedPosts from "../components/FeaturedPosts";
-import PostList from "../components/PostList";
+import MainCategories from "../Components/MainCategories";
+import FeaturedPosts from "../Components/FeaturedPosts";
+import PostList from "../Components/PostList";
 import { useAuth } from "@clerk/clerk-react";
 
 const Homepage = () => {

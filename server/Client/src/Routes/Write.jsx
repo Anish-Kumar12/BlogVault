@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Upload from "../components/Upload";
+import Upload from "../Components/Upload";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
