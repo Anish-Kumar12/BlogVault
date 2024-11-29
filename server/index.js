@@ -8,6 +8,7 @@ import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import helmet from "helmet";
 
 // Resolve __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
@@ -15,14 +16,16 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// Security Middleware
+app.use(helmet());
+
 // CORS Configuration
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: process.env.CLIENT_URL, // Set this to your production client URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(clerkMiddleware());
@@ -31,20 +34,9 @@ app.use(express.json());
 // Static file serving
 app.use(express.static(path.join(__dirname, "Client/dist")));
 
-// Custom headers for CORS (Optional)
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
-
 // API Routes
 app.use("/users", userRouter);
-app.use("/poste", postRouter);
+app.use("/posts", postRouter); // Corrected the route from "/poste" to "/posts"
 app.use("/comments", commentRouter);
 app.use("/webhooks", webhookRouter);
 
@@ -58,7 +50,7 @@ app.use((error, req, res, next) => {
   res.status(error.status || 500).json({
     message: error.message || "Something went wrong!",
     status: error.status,
-    stack: error.stack,
+    stack: process.env.NODE_ENV === 'production' ? {} : error.stack, // Hide stack trace in production
   });
 });
 
