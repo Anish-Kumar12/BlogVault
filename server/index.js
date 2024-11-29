@@ -17,7 +17,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Security Middleware
-app.use(helmet());
 
 // CORS Configuration
 const corsOptions = {
@@ -25,7 +24,7 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Middleware
 app.use(clerkMiddleware());
