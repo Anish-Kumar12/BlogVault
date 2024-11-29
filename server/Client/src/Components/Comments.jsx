@@ -50,6 +50,7 @@ const Comments = ({ postId }) => {
     const data = {
       desc: formData.get("desc"),
     };
+    formData.set("desc", "");
 
     mutation.mutate(data);
   };
