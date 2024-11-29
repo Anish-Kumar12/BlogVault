@@ -19,6 +19,8 @@ const SinglePostPage = () => {
     queryKey: ["post", slug],
     queryFn: () => fetchPost(slug),
   });
+  console.log(data);
+
 
   if (isPending) return "loading...";
   if (error) return "Something went wrong!" + error.message;
