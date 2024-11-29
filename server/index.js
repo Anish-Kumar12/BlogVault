@@ -24,10 +24,11 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(clerkMiddleware());
+app.use("/webhooks", webhookRouter);
 app.use(express.json());
 
 // Static file serving
@@ -37,7 +38,6 @@ app.use(express.static(path.join(__dirname, "Client/dist")));
 app.use("/users", userRouter);
 app.use("/posts", postRouter); // Corrected the route from "/poste" to "/posts"
 app.use("/comments", commentRouter);
-app.use("/webhooks", webhookRouter);
 
 // SPA Fallback Route
 app.get("*", (req, res) => {
